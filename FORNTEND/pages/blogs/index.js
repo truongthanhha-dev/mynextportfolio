@@ -140,7 +140,7 @@ export default function Blogs() {
                                     </div>
                                     <h2><Link href={`/blogs/${blog.slug}`}>{blog.title}</Link></h2>
                                     <div className="fpostby flex">
-                                      <img src="/img/coder.jpg" alt="" />
+                                      <img src="/img/coder.png" alt="" />
                                       <p>By HaTruong coder</p>
                                     </div>
                                   </div>
@@ -216,7 +216,7 @@ export default function Blogs() {
                       <div className="lpostinfo">
                         <h3><Link href={`/blogs/${blog.slug}`}>{blog.title}</Link></h3>
                         <p>Xin chào! Mình là sinh viên đam mê lập trình web. Mình đang học JavaScript, React và Next.js, và xây dựng các dự án thực tế để nâng cao kỹ năng và tạo ra sản phẩm hữu ích.</p>
-                        <h4 className="flex"><img src="/img/coder.jpg" alt="" /><span>by Ha Truong coder</span></h4>
+                        <h4 className="flex"><img src="/img/coder.png" alt="" /><span>by Ha Truong coder</span></h4>
                       </div>
 
                     </div>

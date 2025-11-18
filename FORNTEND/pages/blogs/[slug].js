@@ -5,6 +5,7 @@ import { RiFacebookFill } from "react-icons/ri";
 import { BiLogoLinkedin } from "react-icons/bi";
 import { BsCopy } from "react-icons/bs";
 import Head from "next/head";
+import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import useFetchData from "@/hooks/useFetchData";
@@ -12,20 +13,34 @@ import { Children, useEffect, useRef, useState } from "react";
 import Spinner from "@/components/Spinner";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { FiSearch } from "react-icons/fi";
+import Blogsearch from "@/components/Blogsearch";
 
-const renderComments = (comments) => {
-    if (!Array.isArray(comments) || comments.length === 0) {
+const renderComments = (comments = [], onReply) => {
+    const roots = comments.filter((c) => c?.maincommnet || c?.maincomment);
+
+    if (roots.length === 0) {
         return <p>Chưa có bình luận.</p>;
     }
 
-    return comments.map((comment) => (
-        <div key={comment._id} className="comment">
-            <div className="comment__meta">
-                <strong>{comment.name || 'Ẩn danh'}</strong>
-                {comment.email && <span> • {comment.email}</span>}
-                {comment.title && <p className="comment__title">{comment.title}</p>}
+    return roots.map((parentComment) => (
+        <div className="blogcomment" key={parentComment._id}>
+            <div className="blogcomment__header">
+                <span className="blogcomment__author">{parentComment.name || "Ẩn danh"}</span><span></span>
+                <span className="blogcomment__time">
+                    {parentComment.createdAt
+                        ? new Date(parentComment.createdAt).toLocaleString("vi-VN")
+                        : ""}
+                </span>
             </div>
-            <p>{comment.contentpera}</p>
+            {parentComment.title && (
+                <div className="blogcomment__topic">
+                    <span className="blogcomment__topic-label">Chủ đề:</span>{" "}
+                    <span className="blogcomment__topic-value">{parentComment.title}</span>
+                </div>
+            )}
+            <div className="blogcomment__content">{parentComment.contentpera}</div>
+            <button type="button" className="blogcomment__reply" onClick={() => onReply?.(parentComment)}>Trả lời</button>
         </div>
     ));
 };
@@ -37,7 +52,17 @@ const BlogPage = () => {
     const { slug } = router.query;// fetch the slug parameter from the router
 
     //    hook for all data fetching
-    const { alldata } = useFetchData('/api/blogs');
+    const { allData = [] } = useFetchData('/api/blogs');
+
+    const [searchInput, setSearchInput] = useState(false);
+
+    const handleSearchOpen = () => {
+        setSearchInput(!searchInput);
+    }
+
+    const handleSearchClose = () => {
+        setSearchInput(false);
+    }
 
     const [blogData, setBlogData] = useState({ blog: {}, comments: [] })//initialize comments as an empty array
     const [newComment, setNewComment] = useState({
@@ -140,36 +165,48 @@ const BlogPage = () => {
     //for scroll down to comment form
     const replyFormRef = useRef(null);
 
-    const handleRemoveReply =() =>{
+    const handleRemoveReply = () => {
         setNewComment({
             ...newComment,
             parent: null,
             parentName: null,//set parent name for the reply
             maincommnet: true //set maincomment to false for replies
         })
-        if(replyFormRef.current){
-            replyFormRef.current.scrollIntoView({behavior: 'smooth'})
+        if (replyFormRef.current) {
+            replyFormRef.current.scrollIntoView({ behavior: 'smooth' })
         }
 
     }
 
-    const updateChildrenComments = (comments,parentId, newComment) => {
-        return comments.map(comment =>{
-            if(comment._id === parentId){
+    const handleReplyClick = (targetComment) => {
+        setNewComment((prev) => ({
+            ...prev,
+            parent: targetComment?._id ?? null,
+            parentName: targetComment?.name || 'Ẩn danh',
+            maincommnet: false,
+        }));
+        if (replyFormRef.current) {
+            replyFormRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    const updateChildrenComments = (comments, parentId, newComment) => {
+        return comments.map(comment => {
+            if (comment._id === parentId) {
                 // add new reply to children array
-                return{
+                return {
                     ...comment,
-                    children:[...comment.children, newComment]
+                    children: [...comment.children, newComment]
                 }
-            }else if(comment.children && comment.children.length >0){
+            } else if (comment.children && comment.children.length > 0) {
                 //recursively update children commnets
-                return{
+                return {
                     ...comment,
                     children: updateChildrenComments(comment.children, parentId, newComment)
                 }
             }
             return comment;
-        
+
         })
 
     }
@@ -362,41 +399,45 @@ const BlogPage = () => {
 
                                     <div className="blogusecomments">
                                         <h2>Comments</h2>
-                                        {renderComments(blogData.comments) }
+                                        {renderComments(blogData.comments, handleReplyClick)}
                                     </div>
 
                                     <div className="blogslugcomments" ref={replyFormRef}>
-                                        { }
+                                        {newComment.parentName && (
+                                            <h2>Để lại phản hồi cho <span className="perentname">{newComment.parentName}</span><button onClick={handleRemoveReply} className="removereplybtn">Xóa trả lời</button></h2>
+                                        )}
+                                        {!newComment.parentName && (
+                                            <h2>Để lại bình luận </h2>
+                                        )}
 
-                                        { }
+
                                         <p>Địa chỉ email của bạn sẽ không được công bố. Các trường bắt buộc được đánh dấu *</p>
                                         <form className="leaveareplyform" onSubmit={handleCommentSubmit}>
                                             <div className="nameemailcomment">
                                                 <input
                                                     type="text"
-                                                    placeholder="Nhập Tên Của Bạn"
+                                                    placeholder="Nhập tên của bạn"
                                                     value={newComment.name}
                                                     onChange={(e) => setNewComment({ ...newComment, name: e.target.value })} />
-
                                                 <input
                                                     type="text"
-                                                    placeholder="Nhập Email"
+                                                    placeholder="Nhập email"
                                                     value={newComment.email}
                                                     onChange={(e) => setNewComment({ ...newComment, email: e.target.value })} />
                                             </div>
                                             <input
                                                 type="text"
-                                                placeholder="Nhập Tiêu Đề"
+                                                placeholder="Nhập tiêu đề"
                                                 value={newComment.title}
                                                 onChange={(e) => setNewComment({ ...newComment, title: e.target.value })} />
 
 
                                             <textarea name=""
                                                 rows={4}
-                                                placeholder="Nhập Bình Luận Của Bạn"
+                                                placeholder="Nhập bình luận của bạn"
                                                 id="textcomments"
                                                 value={newComment.contentpera}
-                                                onChange={(e) => setNewComment({ ...newComment, contentpera: e.target.value })} 
+                                                onChange={(e) => setNewComment({ ...newComment, contentpera: e.target.value })}
 
                                             ></textarea>
 
@@ -407,8 +448,41 @@ const BlogPage = () => {
                                         </form>
                                     </div>
                                 </div>
+
+                                <div className="rightsitedetails">
+                                    <div className="rightslugsearchbar">
+                                        <input onClick={handleSearchOpen} type="text" placeholder="Tìm kiếm..." />
+                                        <button><FiSearch /></button>
+                                    </div>
+                                    <div className="rightslugcategory">
+                                        <h2>THỂ LOẠI</h2>
+                                        <ul>
+                                            <Link href='/blogs/category/Next Js'><li>Next Js <span>({allData.filter(ab => ab.blogcategory?.[0] === 'Next Js').length})</span></li></Link>
+                                            <Link href='/blogs/category/Digital Marketing'><li>Digital Marketing <span>({allData.filter(ab => ab.blogcategory?.[0] === 'Digital Marketing').length})</span></li></Link>
+                                            <Link href='/blogs/category/React Js'><li>React Js <span>({allData.filter(ab => ab.blogcategory?.[0] === 'React Js').length})</span></li></Link>
+                                            <Link href='/blogs/category/Tailwind css'><li>Tailwind css <span>({allData.filter(ab => ab.blogcategory?.[0] === 'Tailwind css').length})</span></li></Link>
+                                        </ul>
+                                    </div>
+                                    <div className="rightrecentpost">
+                                        <h2>RECENT POST</h2>
+                                        {allData.slice(0,3).map((blog) =>{
+                                            return<Link key={blog._id} href={`/blogs/${blog.slug}`} className="rightrecentp">
+                                                <img src={blog.images[0]} alt="" />
+                                                <div>
+                                                    <h3>{blog.title}</h3>
+                                                    <h4 className="mt-1">
+                                                        {blog.tags.map((cat) =>{
+                                                            return <span key={cat}>{cat}</span>
+                                                        })}
+                                                    </h4>
+                                                </div>
+                                            </Link>
+                                        })}
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        {searchInput ? <Blogsearch cls={handleSearchClose} /> : null}
                     </div>
                 )}
             </div>

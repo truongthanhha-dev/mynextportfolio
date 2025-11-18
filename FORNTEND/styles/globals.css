@@ -3978,6 +3978,84 @@ header.sticky {
     background-position: -100%;
 }
 
+/* Comment card styling */
+.blogcomment {
+    background: #1a1029;
+    border: 1px solid #6b4fd3;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.blogcomment__header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #c8b9ff;
+}
+
+.blogcomment__author {
+    color: #a3ceeb;
+    font-size:21px ;
+}
+
+.blogcomment__time {
+    color: #9f8cd6;
+    font-weight: normal;
+    font-size: small;
+}
+
+.blogcomment__topic {
+    margin-bottom: 8px;
+    color: #d3c8ff;
+}
+
+.blogcomment__topic-label {
+    font-weight: 700;
+}
+
+.blogcomment__topic-value {
+    color: #ffffff;
+}
+
+.blogcomment__content {
+    background: #2a1d3f;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #f6f3ff;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.blogcomment__reply {
+    background: transparent;
+    color: #a57cff;
+    border: none;
+    padding: 0;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.blogcomment__reply:hover {
+    text-decoration: underline;
+}
+
+/* Comment form styling */
+.leaveareplyform input,
+.leaveareplyform textarea {
+    background: #1a1029;
+    border: 1px solid #3b2c55;
+    color: #f6f3ff;
+}
+
+.leaveareplyform input::placeholder,
+.leaveareplyform textarea::placeholder {
+    color: #8c7bb8;
+}
+
 .bctitle {
     background: linear-gradient(to right, #8750f7 0%, #dddddd 100%);
     -webkit-background-clip: text;
@@ -4148,7 +4226,7 @@ header.sticky {
     position: relative;
     width: 100%;
     /* border-bottom: 1px solid #333; */
-    padding: 1rem 0;
+    padding: 1rem ;
 }
 
 .blogcomment h3 {
@@ -5103,4 +5181,44 @@ header.sticky {
         width: 50px;
     }
     
+}
+.code-block {
+  position: relative;
+  background: #2f2f2f;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 12px 14px;
+  background: transparent;
+  color: #f8f8f2;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.copy-code-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1;
+  background: linear-gradient(180deg, #4a4a4a 0%, #333 100%);
+  color: #f4f4f4;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #272727;
+  box-shadow: 0 2px 0 #151515;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.15s ease;
+}
+
+.copy-code-btn:hover {
+  background: linear-gradient(180deg, #555 0%, #3a3a3a 100%);
+}
+
+.copy-code-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #151515;
 }
