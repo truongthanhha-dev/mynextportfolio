@@ -1,0 +1,91 @@
+import { mongooseConnect } from '@/lib/mongoose';
+import { Blog } from '@/models/Blog';
+import { Comment } from '@/models/Comment';
+
+export default async function handler(req, res) {
+    const { slug } = req.query;
+
+    if (!slug) {
+        return res.status(400).json({ message: "Slug is required" });
+    }
+
+    await mongooseConnect();
+
+    if (req.method === 'GET') {
+        try {
+            // fetch blog by slug
+            const blog = await Blog.findOne({ slug });
+
+            if (!blog) {
+                return res.status(404).json({ message: 'Blog Not Found' });
+            }
+
+            // fetch comments for this blog
+            const comments = await Comment.find({ blog: blog._id }).sort({ createdAt: -1 });
+
+            res.status(200).json({ blog, comments });
+        } catch (error) {
+            console.error("GET API ERROR:", error);
+            res.status(500).json({ message: 'Server error', error: error.message });
+        }
+    } else if (req.method === 'POST') {
+        try {
+            const { name, email, title, contentpera, maincommnet, parent } = req.body;
+
+            const blog = await Blog.findOne({ slug });
+            if (!blog) {
+                return res.status(404).json({ message: "Blog not found" });
+            }
+
+            if (parent) {
+                // if it's a child comment, find the parent comment
+                const parentComment = await Comment.findById(parent);
+                if (!parentComment) {
+                    return res.status(404).json({ message: 'Parent comment not found' });
+                }
+
+                // create the child comment
+                const newComment = new Comment({
+                    name,
+                    email,
+                    title,
+                    contentpera,
+                    maincommnet,
+                    parent: parentComment._id,
+                    blog: blog._id,
+                    parentName: parentComment.name // store parent name
+                });
+
+                await newComment.save();
+
+                // ensure children array exists before pushing
+                parentComment.children = parentComment.children || [];
+                parentComment.children.push(newComment._id);
+
+                await parentComment.save();
+
+                res.status(201).json(newComment);
+            } else {
+                // if it's a root comment (no parent)
+                const newComment = new Comment({
+                    name,
+                    email,
+                    title,
+                    contentpera,
+                    maincommnet,
+                    blog: blog._id
+                });
+
+                await newComment.save();
+                res.status(201).json(newComment);
+            }
+
+        } catch (error) {
+            console.error("POST API ERROR:", error);
+            res.status(500).json({ message: 'Server error', error: error.message });
+        }
+    } else {
+        res.setHeader('Allow', ['GET', 'POST']);
+        res.status(405).end(`Method ${req.method} Not Allowed`);
+    }
+}
