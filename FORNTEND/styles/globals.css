@@ -348,8 +348,78 @@ header.sticky {
     background-color: var(--pure-white);
 }
 
-.logo img {
-    width: 65px;
+.logo-mark {
+    position: relative;
+    min-width: 160px;
+    padding: 1rem 1.6rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 0.4rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 20px 35px rgba(17, 8, 42, 0.35);
+}
+
+.logo-mark::after {
+    content: '';
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    top: -90%;
+    left: -10%;
+    background: conic-gradient(from 90deg, rgba(255, 255, 255, 0.15), transparent 45%, rgba(124, 44, 249, 0.2));
+    animation: rotate-glow 6s linear infinite;
+    z-index: 0;
+}
+
+.logo-mark__primary,
+.logo-mark__secondary {
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+    font-family: 'Space Grotesk', 'Poppins', sans-serif;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.logo-mark__primary {
+    background-image: linear-gradient(120deg, #5fffd2, #7b7bff);
+}
+
+.logo-mark__secondary {
+    background-image: linear-gradient(120deg, #ff8a00, #c84ef4);
+}
+
+.dark .logo-mark {
+    border-color: rgba(20, 12, 28, 0.35);
+    background: rgba(42, 20, 84, 0.08);
+}
+
+.dark .logo-mark::after {
+    background: conic-gradient(from 90deg, rgba(135, 80, 247, 0.35), transparent 50%, rgba(20, 12, 28, 0.4));
+}
+
+.footer .logo-mark {
+    margin-bottom: 0.6rem;
+}
+
+@keyframes rotate-glow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .logo h2 {
@@ -1683,6 +1753,20 @@ header.sticky {
 
 .footer li a:hover {
     color: #905ff1;
+}
+
+.footer .logo {
+    text-align: center;
+}
+
+.footer .logo-email {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f1f1f1;
+}
+
+.dark .footer .logo-email {
+    color: var(--pure-white);
 }
 
 .footericons .ficon {

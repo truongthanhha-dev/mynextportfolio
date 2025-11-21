@@ -11,6 +11,7 @@ import { useState } from 'react';
 import useFetchData from '@/hooks/useFetchData';
 import Link from 'next/link'; 
 import Spinner from '@/components/Spinner'; 
+import Blogsearch from '@/components/Blogsearch';
 export default function Blogs() { 
 
   // pagination
@@ -22,6 +23,16 @@ export default function Blogs() {
 
   // fetch blog data
   const { allData, loading } = useFetchData("/api/blogs");
+
+   const [searchInput, setSearchInput] = useState(false);
+
+    const handleSearchOpen = () => {
+        setSearchInput(!searchInput);
+    }
+
+    const handleSearchClose = () => {
+        setSearchInput(false);
+    }
 
   // total number of blogs
   const allblog = allData?.length || 0;
@@ -93,6 +104,7 @@ export default function Blogs() {
                 <div className="subemail">
                   <form className="flex">           
                     <input
+                    onClick={handleSearchOpen}
                       placeholder="Tìm kiếm bài viết ở đây..."
                       type="text"
                       value={searchQuery}
@@ -164,7 +176,7 @@ export default function Blogs() {
             <div className="border"></div>
             <div className="populartegsdata">
               <div className="fetitle">
-                <h3>Popular Tegs</h3>
+                <h3>Chủ đề phổ biến</h3>
               </div>
               <div className="poputegs">
                 <Link href='/blog/category/Next Js' className='pteg'>
@@ -185,6 +197,27 @@ export default function Blogs() {
                   <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd6f6d0kpz0gyr.cloudfront.net%2Fuploads%2Fimages%2F_1200x630_crop_center-center_82_none%2Ftailwind-thumb.jpg%3Fmtime%3D1609771799&f=1&nofb=1&ipt=7905bdb27cec8eef124c91d0809bea12a463ac5d375240e052349785be22fbb9&ipo=images" alt="" />
                   <div className="tegs">
                     <div className="apps"><span></span>Tailwind</div>
+                  </div>
+                </Link>
+
+                <Link href='/blog/category/HTML' className='pteg'>
+                  <img src="/img/html.png" alt="HTML" />
+                  <div className="tegs">
+                    <div className="apps"><span></span>HTML</div>
+                  </div>
+                </Link>
+
+                <Link href='/blog/category/CSS' className='pteg'>
+                  <img src="/img/css.png" alt="CSS" />
+                  <div className="tegs">
+                    <div className="apps"><span></span>CSS</div>
+                  </div>
+                </Link>
+
+                <Link href='/blog/category/Javascript' className='pteg'>
+                  <img src="/img/js.svg" alt="JavaScript" />
+                  <div className="tegs">
+                    <div className="apps"><span></span>JavaScript</div>
                   </div>
                 </Link>
 
@@ -239,9 +272,11 @@ export default function Blogs() {
                 <button onClick={() => paginate(currentPage + 1)} disabled={currentBlogs.length < perPage}> Next</button>
 
               </div>
+             
             )}
 
           </div>
+           {searchInput ? <Blogsearch cls={handleSearchClose} /> : null}
         </section>
 
 

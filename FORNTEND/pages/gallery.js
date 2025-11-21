@@ -19,7 +19,7 @@ export default function Gallery() {
             <div className="topphonesec">
               <div className="lefttitlesec">
                 <h4>HATRUONGCODER THƯ VIỆN ẢNH</h4>
-                <h1>Nhiếp ảnh <br /> HaTruong</h1>
+                <h1>Kho ảnh  <br /> HaTruong</h1>
                 <Link href='/gallery#galleryimages'><button>XEM THÊM</button></Link>
               </div>
               <div className="rightimgsec">
@@ -36,8 +36,8 @@ export default function Gallery() {
             <div className="galleryhatruongphotos" id="galleryimages">
               <div className="container">
                 <div className="gbtmtitles text-center">
-                  <h3><span>01//</span>BỘ SƯU TẬP CỦA CHÚNG TÔI</h3>
-                  <h2>HaTruongcoder ghi lại <span>tất cả</span><br />những kỷ niệm tuyệt đẹp của bạn</h2>
+                 
+                  <h2>Những điều bình thường<span> nhưng</span><br />ẩn chứa sự dễ thương và ấm áp</h2>
 
                 </div>
 

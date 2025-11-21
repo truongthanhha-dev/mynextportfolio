@@ -69,9 +69,10 @@ export default function Header() {
         <header>
             <nav className="container flex flex-sb">
                 <div className="logo flex gap-2">
-                 {/* logo đổi theo tơn sáng tối */}
-                    <Link href='/'><img src={`/img/${darkMode ? 'white' : 'logo'}.png`} alt="logo" /></Link>
-                 
+                    <Link href='/' className="logo-mark" aria-label="HaTruongCoder">
+                        <span className="logo-mark__primary">HA</span>
+                        <span className="logo-mark__secondary">TRUONG</span>
+                    </Link>
                 </div>
                 <div className="navlist flex gap-2">
                     <ul className="flex gap-2">
@@ -84,15 +85,7 @@ export default function Header() {
                                 Trang chủ
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                href='/services'
-                                className={activeLink === '/services' ? 'active' : ''}
-                                onClick={() => handleLinkClick('/services')}
-                            >
-                                Dịch vụ
-                            </Link>
-                        </li>
+                      
                         <li>
                             <Link
                                 href='/projects'
@@ -120,15 +113,7 @@ export default function Header() {
                                 Bộ sưu tập
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                href='/shop'
-                                className={activeLink === '/shop' ? 'active' : ''}
-                                onClick={() => handleLinkClick('/shop')}
-                            >
-                                Cửa hàng
-                            </Link>
-                        </li>
+                     
                         <li>
                             <Link
                                 href='/contact'
@@ -154,7 +139,10 @@ export default function Header() {
                     {/* làm mờ */}
                     <span onClick={handleMobileClose} className={mobile ? 'active' : ''}></span>
                     <div className="mobilelogo">
-                        <img src="/img/white.png" alt="logo" />
+                        <Link href='/' className="logo-mark" aria-label="HaTruongCoder">
+                            <span className="logo-mark__primary">HA</span>
+                            <span className="logo-mark__secondary">TRUONG</span>
+                        </Link>
                         <h2>TTHcoder</h2>
                     </div>
                     <ul className="flex gap-1 flex-col flex-left mt-3" onClick={handleMobileClose}>

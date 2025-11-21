@@ -134,7 +134,7 @@ export default function Home() {
       </Head>
 
       {/* hero section */}
-      <section className="hero">
+      <section id="home" className="hero">
         <div className="intro_text">
           <svg viewBox="0 0 1320 300">
             <text x='50%' y='50%' textAnchor='middle' className="animate-stroke">HI</text>
@@ -143,47 +143,55 @@ export default function Home() {
         <div className="container">
           <div className="flex w-100">
             <div className="heroinfoleft">
-              <span className="hero_sb_title">I am HaTruongCoder</span>
-              <h1 className="hero_title">Web Developer +<br /> <span className="typed-text">Ux Designer</span></h1>
-              <div className="hero_img_box heroimgbox">
+              <span className="hero_sb_title" data-aos='fade-right'>I am HaTruongCoder</span>
+              <h1 className="hero_title" data-aos='fade-right'>Web Developer <br /> </h1>
+              <div className="hero_img_box heroimgbox" data-aos='flip-left' data-aos-easing='ease-out-cubic' data-aos-duration='2000'>
                 <img src="/img/me.jpg" alt="coder" />
               </div>
-              <div className="lead">
-                Biến những vấn đề phức tạp trong trải nghiệm người dùng thành giải pháp mượt mà, chân thật và đầy cảm hứng, kết nối mọi người ở khắp nơi.
+              <div className="lead" data-aos='fade-up'>
+                Tôi tạo ra những sản phẩm web đơn giản, trực quan và hữu ích, đồng thời không ngừng trau dồi kỹ năng qua từng dự án.
               </div>
-              <div className="hero_btn_box">
-                <Link href='/' download={'/img/resume.pdf'} className='download_cv'> Tải CV<BiDownload /></Link>
+              <div className="hero_btn_box" data-aos='fade-up'>
+                <Link
+                  href='/img/resume.pdf'
+                  download='resume.pdf'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='download_cv'
+                >
+                  Tải CV<BiDownload />
+                </Link>
                 <ul className="hero_social">
-                  <li><a href="/"><FaTwitter /></a></li>
-                  <li><a href="/"><LiaBasketballBallSolid /></a></li>
-                  <li><a href="/"><GrLinkedinOption /></a></li>
-                  <li><a href="/"><FaGithub /></a></li>
+                  {/* <li><a href="/"><FaTwitter /></a></li> */}
+                  {/* <li><a href="/"><LiaBasketballBallSolid /></a></li> */}
+                  {/* <li><a href="/"><GrLinkedinOption /></a></li> */}
+                  <li><a href="https://github.com/truongthanhha-dev"><FaGithub /></a></li>
                 </ul>
               </div>
             </div>
 
             {/* rightside image section */}
             <div className="heroimageright">
-              <div className="hero_img_box">
+              <div className="hero_img_box" data-aos='flip-left' data-aos-easing='ease-out-cubic' data-aos-duration='2000' >
                 <img src="/img/me.png" alt="" />
               </div>
             </div>
 
           </div>
           <div className="funfect_area flex flex-sb">
-            <div className="funfect_item">
+            <div className="funfect_item" data-aos="fade-right">
               <h3>4+</h3>
               <h4>Chinh phục <br /> Code</h4>
             </div>
-            <div className="funfect_item">
+            <div className="funfect_item" data-aos="fade-right">
               <h3>2+</h3>
               <h4>Projects nextjs<br /> Hoàn thành</h4>
             </div>
-            <div className="funfect_item">
+            <div className="funfect_item" data-aos="fade-left">
               <h3>∞</h3>
               <h4>Ý tưởng<br /> & Đam mê</h4>
             </div>
-            <div className="funfect_item">
+            <div className="funfect_item" data-aos="fade-left">
               <h3>21+</h3>
               <h4>Luôn sẵn sàng<br /> học hỏi</h4>
             </div>
@@ -192,11 +200,11 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="services">
+      <section id="skills" className="services">
         <div className="container">
           <div className="services_titles">
             <h2>Kỹ Năng & Thế Mạnh Của Tôi</h2>
-            <p>Tôi biến ý tưởng thành những dự án web sáng tạo và đơn giản, thể hiện niềm đam mê của tôi với lập trình và thiết kế.</p>
+            <p>Tôi biến ý tưởng thành những dự án web sáng tạo và đơn giản, thể hiện niềm đam mê của tôi với lập trình.</p>
           </div>
           <div className="services_menu">
             {services.map((service, index) => (
@@ -303,7 +311,7 @@ export default function Home() {
               </div>
               <div className="exper_card">
                 <span>2022 - 2025</span>
-                <h3>Academic Achievement</h3>
+                <h3>Thành tích học tập</h3>
                 <p>Luôn duy trì kết quả học tập ổn định, hoàn thành tốt các môn lập trình và công nghệ phần mềm.</p>
               </div>
               <div className="exper_card">
@@ -427,6 +435,4 @@ export default function Home() {
     </>
   );
 }
-
-
 
