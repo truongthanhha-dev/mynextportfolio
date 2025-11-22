@@ -59,10 +59,9 @@ export default function projects() {
                     </div>
                     <div className="project_buttons">
                         <button className={selectedCategory === 'All' ? 'active' : ''} onClick={() => handleCategoryChange('All')}>All</button>
-                        <button className={selectedCategory === 'Website Development' ? 'active' : ''} onClick={() => handleCategoryChange('Website Development')}>Website</button>
-                        <button className={selectedCategory === 'App Development' ? 'active' : ''} onClick={() => handleCategoryChange('App Development')}>Apps</button>
-                        <button className={selectedCategory === 'E-commerce Site' ? 'active' : ''} onClick={() => handleCategoryChange('E-commerce Site')}>Digital</button>
-                        <button className={selectedCategory === 'Performance Evaluation' ? 'active' : ''} onClick={() => handleCategoryChange('Performance Evaluation')}>Content</button>
+                        <button className={selectedCategory === 'Admin Dashboard' ? 'active' : ''} onClick={() => handleCategoryChange('Admin Dashboard')}>Website Quản lý (Admin)</button>
+                        <button className={selectedCategory === 'E-commerce Website' ? 'active' : ''} onClick={() => handleCategoryChange('E-commerce Website')}>Website Thương mại điện tử</button>
+                        <button className={selectedCategory === 'Portfolio Website' ? 'active' : ''} onClick={() => handleCategoryChange('Portfolio Website')}>Portfolio Website</button>
                     </div>
                     <div className="projects_cards">
                         {loading ? <div className="flex flex-center wh_50"><Spinner /></div> : (

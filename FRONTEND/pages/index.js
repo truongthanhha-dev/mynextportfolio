@@ -124,6 +124,8 @@ export default function Home() {
     return new Intl.DateTimeFormat('en-US', options).format(d);
   }
 
+  const recentBlogs = Array.isArray(allwork) ? allwork.slice(0, 3) : [];
+
   return (
     <>
       <Head>
@@ -438,7 +440,7 @@ export default function Home() {
 
           <div className="recent_blogs">
 
-            {allwork?.slice(0, 3).map((blog) => {
+            {recentBlogs.map((blog) => {
               return (
                 <Link href={`/blogs/${blog.slug}`} key={blog._id} className="re_blog">
                   <div className="re_blogimg">
