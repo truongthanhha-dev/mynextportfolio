@@ -186,11 +186,13 @@ export default function Project({
             id="category"
             multiple
           >
-            <option value="Website Development">Phát triển Website</option>
-            <option value="App Development">Phát triển Ứng dụng</option>
-            <option value="Design System">Hệ thống Thiết kế</option>
-            <option value="E-commerce Site">Website Thương mại điện tử</option>
-         
+            
+            <option value="Admin Dashboard">Website Quản lý (Admin)</option>
+            <option value="E-commerce Website">Website Thương mại điện tử</option>
+            <option value="Portfolio Website">Portfolio Website</option>
+            
+
+
           </select>
         </div>
 

@@ -23,10 +23,10 @@ export default function Gallery() {
                 <Link href='/gallery#galleryimages'><button>XEM THÊM</button></Link>
               </div>
               <div className="rightimgsec">
-                <img src="https://wpthemebooster.com/demo/themeforest/html/kimono/assets/img/projects/3/1.jpg" alt="" />
+                <img src="https://i.pinimg.com/1200x/2e/72/fa/2e72faf046fecc6939cbd0c779b6cdbd.jpg" alt="" />
                 <div className="r_img_top">
-                  <img src="https://wpthemebooster.com/demo/themeforest/html/kimono/assets/img/projects/1/6.jpg" alt="" />
-                  <img src="https://wpthemebooster.com/demo/themeforest/html/kimono/assets/img/projects/1/5.jpg" alt="" />
+                  <img src="https://i.pinimg.com/736x/45/c9/af/45c9af9dcbb07651126088b5a809f31e.jpg" alt="" />
+                  <img src="https://i.pinimg.com/736x/2e/63/73/2e6373a25bb9d0031f7358bc7e32e72d.jpg" alt="" />
                 </div>
 
               </div>

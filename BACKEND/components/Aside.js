@@ -74,7 +74,7 @@ export default function Aside({ asideOpen, handleAsideOpen }) {
 
                                                 </li>
 
-                                                <li className={activeLink === '/shops' ? 'navactive flex-col flex-left' : 'flex-col flex-left'} onClick={() => handleLinkClick('/shops')}>
+                                                {/* <li className={activeLink === '/shops' ? 'navactive flex-col flex-left' : 'flex-col flex-left'} onClick={() => handleLinkClick('/shops')}>
                                                         <div className="flex gap-1">
                                                                 <TiShoppingCart size={26} />
                                                                 <span>Cửa hàng</span>
@@ -87,7 +87,7 @@ export default function Aside({ asideOpen, handleAsideOpen }) {
                                                                 </ul>
                                                         )}
 
-                                                </li>
+                                                </li> */}
 
                                                 <li className={activeLink === '/gallery' ? 'navactive flex-col flex-left' : 'flex-col flex-left'} onClick={() => handleLinkClick('/gallery')}>
                                                         <div className="flex gap-1">

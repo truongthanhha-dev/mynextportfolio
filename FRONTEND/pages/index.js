@@ -235,27 +235,56 @@ export default function Home() {
 
           </div>
           <div className="project_buttons">
-            <button className={selectedCategory === 'All' ? 'active' : ''} onClick={() => handleCategoryChange('All')}>All</button>
-            <button className={selectedCategory === 'Website Development' ? 'active' : ''} onClick={() => handleCategoryChange('Website Development')}>Website</button>
-            <button className={selectedCategory === 'App Development' ? 'active' : ''} onClick={() => handleCategoryChange('App Development')}>Apps</button>
-            <button className={selectedCategory === 'E-commerce Site' ? 'active' : ''} onClick={() => handleCategoryChange('E-commerce Site')}>Digital</button>
-            <button className={selectedCategory === 'Performance Evaluation' ? 'active' : ''} onClick={() => handleCategoryChange('Performance Evaluation')}>Content</button>
+            <button
+              className={selectedCategory === 'All' ? 'active' : ''}
+              onClick={() => handleCategoryChange('All')}
+            >
+              All
+            </button>
+
+
+            <button
+              className={selectedCategory === 'Admin Dashboard' ? 'active' : ''}
+              onClick={() => handleCategoryChange('Admin Dashboard')}
+            >
+              Website Admin
+            </button>
+
+            <button
+              className={selectedCategory === 'E-commerce Website' ? 'active' : ''}
+              onClick={() => handleCategoryChange('E-commerce Website')}
+            >
+              E-commerce Website
+            </button>
+
+            <button
+              className={selectedCategory === 'Portfolio Website' ? 'active' : ''}
+              onClick={() => handleCategoryChange('Portfolio Website')}
+            >
+              Portfolio Website
+            </button>
+
+            
           </div>
+
 
           <div className="projects_cards">
             {loading ? <div className="flex flex-center wh_50"><Spinner /></div> : (
               filteredProject.length === 0 ? (<h1>Không tìm thấy dự án nào</h1>) : (
-                filteredProject.slice(0, 4).map((pro) => (
-                  <Link href='/' key={pro._id} className="procard">
-                    <div className="proimgbox">
-                      <img src={pro.images?.[0] || "/img/placeholder.jpg"} alt={pro.title} />
-                    </div>
-                    <div className="procontentbox">
-                      <h2>{pro.title}</h2>
-                      <GoArrowUpRight />
-                    </div>
-                  </Link>
-                ))
+                filteredProject.slice(0, 4).map((pro) => {
+                  const projectHref = pro?.slug ? `/projects/${pro.slug}` : '/projects';
+                  return (
+                    <Link href={projectHref} key={pro._id} className="procard">
+                      <div className="proimgbox">
+                        <img src={pro.images?.[0] || "/img/placeholder.jpg"} alt={pro.title} />
+                      </div>
+                      <div className="procontentbox">
+                        <h2>{pro.title}</h2>
+                        <GoArrowUpRight />
+                      </div>
+                    </Link>
+                  )
+                })
               )
             )}
           </div>
@@ -435,4 +464,3 @@ export default function Home() {
     </>
   );
 }
-

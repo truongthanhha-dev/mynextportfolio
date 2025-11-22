@@ -4434,14 +4434,17 @@ header.sticky {
     width: 100%;
     height: auto;
     overflow: hidden;
-    padding: 2rem;
+    padding: 1.5rem;
     border: 1px dashed #34269c;
+    border-radius: 20px;
+    background: rgba(135, 80, 247, 0.05);
 }
 
 
 .proslugimg img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .projectsluginfo {
@@ -4522,21 +4525,43 @@ header.sticky {
 
 .projectslugsliderimg {
     overflow: hidden;
-    margin-top: 3rem;
-}
-
-.projectslugsliderimg img {
-    width: 350px;
-    height: 100%;
-    object-fit: cover;
+    margin-top: 2.5rem;
 }
 
 .projectslugsliderimg .swiper-wrapper {
     display: flex;
+    align-items: center;
 }
 
 .projectslugsliderimg .swiper-slide {
     width: auto;
+    display: flex;
+}
+
+.projectthumb {
+    border: 2px solid transparent;
+    border-radius: 14px;
+    padding: 6px;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.projectthumb:hover {
+    transform: translateY(-4px);
+}
+
+.projectthumb.active {
+    border-color: #8750f7;
+}
+
+.projectthumb img {
+    width: clamp(160px, 18vw, 260px);
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 10px;
+    background: #0d0d0d;
 }
 
 .psdescri h2 {

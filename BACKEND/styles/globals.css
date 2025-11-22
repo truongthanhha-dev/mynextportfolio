@@ -4,11 +4,42 @@
     box-sizing: border-box;
 }
 
+:root {
+    --backend-bg: #030013;
+    --backend-gradient:
+        radial-gradient(circle at 20% 20%, rgba(135, 80, 247, 0.25), transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(42, 20, 84, 0.8), transparent 50%),
+        radial-gradient(circle at 10% 80%, rgba(23, 11, 66, 0.6), transparent 55%),
+        #050013;
+    --backend-surface: rgba(17, 12, 36, 0.9);
+    --backend-surface-2: rgba(13, 8, 28, 0.9);
+    --backend-card: rgba(18, 15, 42, 0.95);
+    --backend-border: rgba(255, 255, 255, 0.08);
+    --backend-text: #f4f0ff;
+    --backend-text-muted: #b3acd4;
+    --backend-accent: #8750f7;
+    --backend-accent-2: #2a1454;
+}
+
 body {
-    background-color: rgb(248, 250, 252);
+    background: var(--backend-gradient);
+    color: var(--backend-text);
     font-family: "Nunito", sans-serif;
     font-weight: 600;
     overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--backend-accent);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--backend-accent-2);
 }
 
 /* ================================================== */
@@ -279,12 +310,14 @@ button {
 .header {
     width: 100%;
     height: 100px;
-    background-color: #fff;
+    background: linear-gradient(135deg, rgba(44, 19, 82, 0.95), rgba(101, 49, 170, 0.9));
     padding: 2rem;
     position: fixed;
     top: 0;
     z-index: 99;
-    box-shadow: 0 0 10px #c4c4c4;
+    box-shadow: 0 30px 80px rgba(3, 0, 20, 0.55);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--backend-text);
 }
 
 .logo {
@@ -294,7 +327,7 @@ button {
 .logo h1 {
     position: relative;
     font-weight: 900;
-    color: #000;
+    color: var(--backend-text);
 }
 
 .logo h1::before {
@@ -302,7 +335,7 @@ button {
     position: absolute;
     left: -2px;
     top: 0;
-    background-color: rgb(242, 52, 52);
+    background: linear-gradient(135deg, var(--backend-accent), #ff4fd8);
     border-radius: 1px 12px;
     width: 20px;
     height: 20px;
@@ -312,21 +345,30 @@ button {
 .headerham {
     width: 40px;
     height: 40px;
-    background-color: #eee8fa;
-    color: #5f22db;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--backend-accent);
     font-size: 20px;
     border-radius: 50%;
     cursor: pointer;
+    border: 1px solid transparent;
+    transition: 0.3s ease;
+}
+
+.headerham:hover {
+    border-color: var(--backend-border);
 }
 
 .rightnav svg {
     font-size: 22px;
     cursor: pointer;
+    color: var(--backend-text);
 }
 
 .profilenav img {
     width: 120px;
     cursor: pointer;
+    border: 2px solid var(--backend-border);
+    border-radius: 50%;
 }
 
 /* ********************************************** */
@@ -339,10 +381,12 @@ button {
     left: -200px;
     width: 200px;
     height: 100vh;
-    background-color: #fff;
+    background: var(--backend-surface-2);
     z-index: 9;
-    box-shadow: 0 0 10px #c4c4c4;
+    box-shadow: 0 20px 80px rgba(3, 0, 20, 0.6);
+    border-right: 1px solid var(--backend-border);
     transition: 0.3s ease-in-out;
+    color: var(--backend-text);
 }
 
 .asideleft.active {
@@ -355,6 +399,13 @@ button {
     gap: 1rem;
     padding: 1rem;
     cursor: pointer;
+    border-radius: 12px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.asideleft ul li:hover:not(.navactives) {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
 }
 
 .asideleft ul .flex-left {
@@ -367,16 +418,19 @@ button {
 } */
 
 .navactives {
-    background-color: #7e37d8;
+    background: linear-gradient(120deg, var(--backend-accent), #b14bff);
     color: #fff;
+    box-shadow: 0 15px 35px rgba(135, 80, 247, 0.35);
 }
 
 .asideleft ul li svg {
     font-size: 22px;
+    color: inherit;
 }
 
 .asideleft ul li span {
     font-size: 20px;
+    color: inherit;
 }
 
 .asideleft ul li ul {
@@ -386,7 +440,7 @@ button {
 }
 
 .asideleft ul li ul li:hover {
-    background-color: #7e37d8;
+    background: rgba(255, 255, 255, 0.08);
     color: #fff;
 }
 
@@ -413,12 +467,12 @@ button {
     border: none;
     outline: none;
     border-radius: 10px;
-    background-color: #e6dbfb;
-    color: #5f22db;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--backend-text);
     transition: 0.3s;
 }
 .logoutbtn:hover{
-    background-color: #9664f1;
+    background: linear-gradient(120deg, var(--backend-accent), #b14bff);
     color: #fff;
 }
 /* ********************************************** */
@@ -434,6 +488,7 @@ button {
     /* margin-left: 200px; */
     padding: 2rem;
     z-index: 5;
+    color: var(--backend-text);
 }
 
 /* title */
@@ -442,19 +497,19 @@ button {
 }
 
 .titledashboard h2 {
-    color: #7e37d8;
+    color: var(--backend-accent);
     font-size: 2rem;
     font-weight: 800;
 }
 
 .titledashboard h2 span {
-    color: #000;
+    color: var(--backend-text);
 }
 
 .titledashboard h3 {
     display: block;
     text-transform: uppercase;
-    color: #7e37d8;
+    color: var(--backend-text-muted);
     letter-spacing: 4px;
     font-weight: 700;
 }
@@ -467,12 +522,12 @@ button {
 
 .breadcrumb svg {
     font-size: 22px;
-    color: #571f9e;
+    color: var(--backend-accent);
 }
 
 .breadcrumb span {
     font-size: 22px;
-    color: #571f9e;
+    color: var(--backend-text-muted);
 }
 
 /* fourcards */
@@ -544,8 +599,9 @@ button {
     position: relative;
     width: 65%;
     height: 600px;
-    background-color: #fff;
-    box-shadow: 0 0 10px #d4d4d4;
+    background: rgba(255, 255, 255, 0.95);
+    color: #120825;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
     border-radius: 50px;
     overflow: hidden;
     padding: 2.5rem 4rem;
@@ -559,8 +615,10 @@ button {
     height: 600px;
     border-radius: 50px;
     padding: 2.5rem 4rem;
-    box-shadow: 0 0 10px #d4d4d4;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.92);
+    color: #120825;
 }
 
 .leftyearoverview canvas {
@@ -645,6 +703,7 @@ button {
 .leftyearoverview h3,
 .right_salescont h3 {
     font-weight: 800;
+    color: #120825;
 }
 
 .leftyearoverview h3 span {
@@ -660,13 +719,20 @@ button {
 
 .blogscategory table {
     width: 100%;
-    color: #000;
+    color: #120825;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .blogscategory thead tr {
-    background-color: rgb(230, 230, 230);
-    color: #000;
+    background: linear-gradient(120deg, #fefcff, #efe6ff);
+    color: #120825;
     font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 
@@ -674,10 +740,16 @@ button {
     list-style: auto;
     padding: 2rem;
     font-size: 1.3rem;
+    color: #1d1235;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.blogscategory tbody tr:last-child td {
+    border-bottom: none;
 }
 
 .blogscategory tbody tr:hover {
-    background-color: #e3e3e3;
+    background-color: rgba(135, 80, 247, 0.08);
 }
 
 /* ********************************************** */
@@ -692,6 +764,7 @@ button {
     margin-top: 120px;
     /* margin-left: 200px; */
     padding: 2rem;
+    color: var(--backend-text);
 }
 
 .blogstable {
@@ -703,40 +776,45 @@ button {
 .blogstable input {
     width: 450px;
     padding: 10px;
-    border: 1px solid #999;
+    border: 1px solid var(--backend-border);
     font-size: 22px;
-    outline-color: #571f9e;
-    box-shadow: 0 0 5px #999;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--backend-text);
+    box-shadow: none;
     border-radius: 10px;
 }
 
+.blogstable input::placeholder {
+    color: var(--backend-text-muted);
+}
+
 .blogstable input:focus {
-    /* outline: none; */
-    box-shadow: 0 0 10px #9674c3;
+    box-shadow: 0 0 0 2px rgba(135, 80, 247, 0.4);
 }
 
 .blogstable table {
     width: 100%;
-    color: #1b3155;
+    color: var(--backend-text);
     text-align: left;
     font-size: 1.3rem;
 }
 
 .blogstable table thead th {
-    color: #1b3155;
-    background-color: #cfe2ff;
+    color: var(--backend-text);
+    background-color: rgba(135, 80, 247, 0.2);
     padding: 0.75rem;
     font-size: 1.5rem;
 }
 
 .blogstable table tbody td {
-    color: #1b3155;
+    color: var(--backend-text-muted);
     padding: 1rem 10px;
 }
 
 .blogstable table tbody {
-    border: 1px solid #000;
-    background-color: #f0f0f0;
+    border: 1px solid var(--backend-border);
+    background-color: rgba(255, 255, 255, 0.02);
 }
 
 .blogstable table button {
@@ -746,9 +824,10 @@ button {
     padding: 0.5rem 1rem;
     border-radius: 10px;
     font-weight: 700;
-    border: 1px solid #555;
-    color: #444;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--backend-text);
     transition: 0.3s ease;
+    background: transparent;
 }
 
 .blogstable table button:hover:nth-child(1) {
@@ -776,27 +855,28 @@ button {
     justify-content: center;
     margin-bottom: 3rem;
     margin-top: 3rem;
-    color: #000;
+    color: var(--backend-text);
 }
 
 .blogpagination button {
-    background-color: #f0f0f0;
-    border: none;
-    color: #333;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--backend-border);
+    color: var(--backend-text);
     padding: 15px 20px;
     font-weight: 600;
     margin-right: 5px;
     border-radius: 10px;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
 .blogpagination button:hover {
-    background-color: #667eea;
+    background-color: var(--backend-accent);
     color: #fff;
 }
 
 .blogpagination button.active {
-    background-color: #667eea;
+    background-color: var(--backend-accent);
     color: #fff;
 }
 
@@ -818,6 +898,7 @@ button {
     margin-top: 120px;
     /* margin-left: 200px; */
     padding: 2rem;
+    color: var(--backend-text);
 }
 
 .blogsadd {
@@ -828,37 +909,43 @@ button {
 /* blog component */
 .addWebsiteform {
     width: 100%;
-    background-color: #f6f6f6;
+    background-color: var(--backend-card);
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 0 10px #d1d1d1;
+    border-radius: 20px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45);
+    border: 1px solid var(--backend-border);
 }
 
 .addWebsiteform input {
     width: 100%;
     font-size: 1.4rem;
     padding: 0.75rem;
-    border-radius: 10px;
-    border: 1px solid #999;
+    border-radius: 12px;
+    border: 1px solid var(--backend-border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--backend-text);
 }
 
 .addWebsiteform input:focus {
     outline: none;
-    box-shadow: 0 0 10px #845fb3;
+    box-shadow: 0 0 0 2px rgba(135, 80, 247, 0.4);
 }
 
 .addWebsiteform label {
     font-size: 1.4rem;
     padding-bottom: 10px;
     font-weight: 700;
+    color: var(--backend-text-muted);
 }
 
 .addWebsiteform select {
     width: 100%;
     font-size: 1.4rem;
     padding: 0.5rem 1rem;
-    border-radius: 10px;
-    border: 1px solid #999;
+    border-radius: 12px;
+    border: 1px solid var(--backend-border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--backend-text);
 }
 
 .addWebsiteform select option {
@@ -873,7 +960,7 @@ button {
 .addWebsiteform button {
     width: 100%;
     padding: 1rem;
-    background-color: #8667b0;
+    background-color: var(--backend-accent);
     color: #fff;
     border-radius: 10px;
     border: none;
@@ -905,6 +992,7 @@ button {
     margin-top: 120px;
     /* margin-left: 200px; */
     padding: 2rem;
+    color: var(--backend-text);
 }
 
 
@@ -920,7 +1008,7 @@ button {
 .deletecard {
     width: 450px;
     height: 320px;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--backend-card);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -930,7 +1018,8 @@ button {
     gap: 13px;
     position: relative;
     overflow: hidden;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.062);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--backend-border);
 }
 
 #cookieSvg {
@@ -944,14 +1033,14 @@ button {
 .cookieHeading {
     font-size: 1.8em;
     font-weight: 800;
-    color: rgb(26, 26, 26);
+    color: var(--backend-text);
 }
 
 .cookieDescription {
     text-align: center;
     font-size: 1em;
     font-weight: 600;
-    color: rgb(99, 99, 99);
+    color: var(--backend-text-muted);
 }
 
 .buttonContainer {
@@ -976,10 +1065,10 @@ button {
 .declineButton {
     width: 120px;
     height: 50px;
-    background-color: rgb(218, 218, 218);
+    background-color: rgba(255, 255, 255, 0.08);
     transition-duration: .2s;
-    color: rgb(46, 46, 46);
-    border: none;
+    color: var(--backend-text);
+    border: 1px solid transparent;
     cursor: pointer;
     font-weight: 600;
     font-size: 1rem;
@@ -987,7 +1076,7 @@ button {
 }
 
 .declineButton:hover {
-    background-color: #ebebeb;
+    background-color: rgba(255, 255, 255, 0.2);
     transition-duration: .2s;
 }
 
@@ -1010,6 +1099,7 @@ button {
     margin-top: 120px;
     /* margin-left: 200px; */
     padding: 2rem;
+    color: var(--backend-text);
 }
 
 .profilesettings {
@@ -1020,21 +1110,22 @@ button {
     justify-content: center;
     gap: 5rem;
     margin-top: 3rem;
-    /* background-color: #e6e6e6; */
-    background: url('/img/profile_bg.jpg') no-repeat center center/cover;
+    background: rgba(8, 4, 18, 0.8);
     border-radius: 35px;
     padding: 5rem 0;
+    border: 1px solid var(--backend-border);
 }
 
 .leftprofile_details {
     width: 50%;
-    box-shadow: 0 0 10px #999;
-    background-color: #ffffffc4;
-    backdrop-filter: blur(5px);
-   
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    background-color: rgba(13, 8, 28, 0.85);
+    backdrop-filter: blur(10px);
     padding: 32px 32px 32px 0px;
     /* padding-top: 0; */
     border-radius: 35px;
+    border: 1px solid var(--backend-border);
+    color: var(--backend-text);
     
 }
 
@@ -1051,19 +1142,19 @@ button {
 
 .leftprofile_details h3 {
     font-weight: 800;
-    color: #555;
+    color: var(--backend-text-muted);
 }
 
 .leftprofile_details input {
     font-weight: 700;
-    color: #555;
-    border: none;
+    color: var(--backend-text);
+    border: 1px solid var(--backend-border);
     padding: 10px;
     font-size: 1rem;
     outline: none;
     width: 170px;
     border-radius: 10px;
-    box-shadow: 0 0 10px #c5c5c5;
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .leftprofile_details input:nth-child(1) {
@@ -1075,23 +1166,25 @@ button {
     font-size: 22px;
     border-radius: 30px;
     border: none;
-    background: linear-gradient(to right, #f05f2e, #d0499c);
+    background: linear-gradient(to right, #f05f2e, #8750f7);
     color: #fff;
     font-weight: 700;
 }
 
 .leftprofile_details button:hover {
-    background: linear-gradient(to right, #9014ac, #b45dc4);
+    background: linear-gradient(to right, #8750f7, #2a1454);
 }
 
 .topaccoutnbox {
     width: 450px;
-    background-color: #ffffffc6;
-    backdrop-filter: blur(5px);
+    background-color: rgba(13, 8, 28, 0.85);
+    backdrop-filter: blur(10px);
     padding: 2rem;
     margin-bottom: 1rem;
     border-radius: 30px;
-    box-shadow: 0 0 10px #999;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--backend-border);
+    color: var(--backend-text);
 }
 
 .topaccoutnbox h2 {
@@ -1110,8 +1203,8 @@ button {
 }
 
 .topaccoutnbox button:hover {
-    box-shadow: 0 0 10px #d31313;
-    background: #888888;
+    box-shadow: 0 0 10px rgba(33, 12, 88, 0.8);
+    background: #2a1454;
     color: #fff;
 }
 
@@ -1161,21 +1254,21 @@ button {
 .loginfront h1 {
     font-size: 2rem;
     text-align: center;
-    color: #000;
+    color: var(--backend-text);
 }
 
 .loginfront p {
     font-weight: 500;
-    color: #555;
+    color: var(--backend-text-muted);
 }
 
 .loginfront p a {
-    color: rgb(93, 124, 73);
+    color: var(--backend-accent);
 }
 
 .loginfront button {
     padding: 10px 20px;
-    background-color: rgb(78, 78, 203);
+    background: linear-gradient(120deg, var(--backend-accent), #b14bff);
     color: #fff;
     border: none;
     outline: none;
@@ -1184,13 +1277,13 @@ button {
     font-weight: 500;
     letter-spacing: 2px;
     cursor: pointer;
-    box-shadow: 0 3px 10px #333;
+    box-shadow: 0 15px 40px rgba(135, 80, 247, 0.35);
     transition: 0.2s ease-in-out;
 }
 
 .loginfront button:is(:hover, :active) {
-    background-color: rgb(136, 136, 234);
-    color: #000;
+    background: #fff;
+    color: #120825;
 }
 
 .loginfront button:active {
@@ -1876,6 +1969,68 @@ button {
 
 .deleteing button:hover {
   color: #c62828;            /* đỏ đậm hơn khi hover */
+}
+
+/* Contact view */
+.contact-view-layout {
+    display: grid;
+    gap: 24px;
+}
+
+.contact-view-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1f1f1f;
+}
+
+.contact-view-subtitle {
+    letter-spacing: 2px;
+    color: #7e57c2;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.contact-view-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 22px;
+    max-width: 520px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.contact-view-grid {
+    display: grid;
+    gap: 12px;
+}
+
+.contact-view-grid h4 {
+    margin: 0;
+    color: #7e57c2;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.contact-view-grid p {
+    margin: 0;
+    color: #2f2f2f;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.contact-view-desc {
+    grid-column: 1 / -1;
+}
+
+.contact-view-grid > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.contact-view-desc {
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 

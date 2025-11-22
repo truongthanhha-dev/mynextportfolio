@@ -98,8 +98,8 @@ export default function contact() {
                                 <h2>Liên hệ cho tôi</h2>
                             </div>
                             <div className="rightcontinputs">
-                                <input type="text" value={name} onChange={ev => setName(ev.target.value)} placeholder="Họ và tên" required />
-                                <input type="text" value={lname} onChange={ev => setLname(ev.target.value)} placeholder="Tên gọi khác" required />
+                                <input type="text" value={name} onChange={ev => setName(ev.target.value)} placeholder="Nhập họ của bạn" required />
+                                <input type="text" value={lname} onChange={ev => setLname(ev.target.value)} placeholder="Nhập tên của bạn" required />
                                 <input type="email" value={email} onChange={ev => setEmail(ev.target.value)} placeholder="Địa chỉ email" required />
                                 <input type="text" value={company} onChange={ev => setCompany(ev.target.value)} placeholder="Tên công ty" required />
                                 <input type="text" value={phone} onChange={ev => setPhone(ev.target.value)} placeholder="Số điện thoại" required />

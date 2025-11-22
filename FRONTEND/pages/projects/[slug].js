@@ -6,7 +6,7 @@ import { FreeMode } from "swiper/modules";
 import Spinner from "@/components/Spinner";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function projectslug() {
 
@@ -21,6 +21,11 @@ export default function projectslug() {
     const project = allData?.[0] || null;
     const images = project?.images || [];
     const createdAtDate = project?.createdAt || project?.createAt || null;
+    const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+    useEffect(() => {
+        setActiveImageIndex(0);
+    }, [images?.length]);
 
     //function to format the date as'20 may 2024 14:11 pm'
     const formatDate = (date) => {
@@ -84,7 +89,7 @@ export default function projectslug() {
             <div className="projectslugimg">
                 <div className="container">
                     <div className="proslugimg">
-                        <img src={images?.[0] || "/img/placeholder.jpg"} alt={project?.title || ""} />
+                        <img src={images?.[activeImageIndex] || "/img/placeholder.jpg"} alt={project?.title || ""} />
                     </div>
 
                     <div className="projectsluginfo">
@@ -123,7 +128,7 @@ export default function projectslug() {
                     <div className="projectslugsliderimg">
                         <Swiper
                             slidesPerView={'auto'}
-                            spaceBetween={30}
+                            spaceBetween={20}
                             freeMode={true}
                             grabCursor={true}
                             modules={[FreeMode]}
@@ -131,11 +136,15 @@ export default function projectslug() {
                         >
                             {(images || []).map((image, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={image} alt="project" />
+                                    <button
+                                        type="button"
+                                        className={`projectthumb ${index === activeImageIndex ? 'active' : ''}`}
+                                        onClick={() => setActiveImageIndex(index)}
+                                    >
+                                        <img src={image} alt="project preview" />
+                                    </button>
                                 </SwiperSlide>
                             ))}
-
-
                         </Swiper>
                     </div>
 
@@ -147,7 +156,7 @@ export default function projectslug() {
             <div className="projectslugdescription">
                 <div className="container">
                     <div className="psdescri">
-                        <h2>Project Description</h2>
+                        <h2>Mô tả dự án</h2>
                         <div className="blogcontent">
                             <ReactMarkdown
                                 remarkPlugins={[remarkGfm]}
