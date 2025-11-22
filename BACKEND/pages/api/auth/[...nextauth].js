@@ -43,9 +43,5 @@ export default NextAuth({
       if (token) session.user._id = token._id;
       return session;
     }
-  },
-
-  pages: {
-    signIn: "/auth/signin"
   }
 });
