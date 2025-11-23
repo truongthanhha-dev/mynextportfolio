@@ -10,6 +10,11 @@ import Profile from "@/models/Profile";
 export default NextAuth({
   providers: [
     CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email", placeholder: "you@example.com" },
+        password: { label: "Password", type: "password" },
+      },
       async authorize(credentials) {
         await mongooseConnect();
 
@@ -24,8 +29,7 @@ export default NextAuth({
         }
 
         return { id: user._id, email: user.email };
-      },
-      credentials: undefined
+      }
     })
   ],
   
