@@ -1,20 +1,20 @@
 "use client";
 
-import { useSession, signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function LoginLayout({ children }) {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
-    if (status === "unauthenticated") {
-      if (typeof window !== "undefined") {
-        signIn(undefined, { callbackUrl: window.location.href });
-      } else {
-        signIn();
+    if (status === "unauthenticated" && typeof window !== "undefined") {
+      if (window.location.pathname !== "/auth/signin") {
+        router.push("/auth/signin");
       }
     }
-  }, [status]);
+  }, [status, router]);
 
   if (status === "loading") {
     return (
