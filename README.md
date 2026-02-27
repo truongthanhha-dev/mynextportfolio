@@ -164,4 +164,4 @@ http://localhost:3000
 
 - GitHub: https://github.com/truongthanhha-dev  
 - Portfolio: https://mynextportfolio-8utt.vercel.app/  
-- Email: **hatruongcoder@gmail.com**
+- Email: **hatruongdev@gmail.com**
