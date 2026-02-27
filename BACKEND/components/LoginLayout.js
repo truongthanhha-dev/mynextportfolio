@@ -10,7 +10,8 @@ export default function LoginLayout({ children }) {
 
   useEffect(() => {
     if (status === "unauthenticated" && typeof window !== "undefined") {
-      if (window.location.pathname !== "/auth/signin") {
+      const publicAuthPages = ["/auth/signin", "/auth/signup"];
+      if (!publicAuthPages.includes(window.location.pathname)) {
         router.push("/auth/signin");
       }
     }

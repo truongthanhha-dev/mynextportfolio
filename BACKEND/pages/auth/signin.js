@@ -1,6 +1,7 @@
 
 'use client'
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { signIn, useSession } from "next-auth/react";
 import Spinner from "@/components/Spinner";
@@ -98,6 +99,9 @@ export default function SignInPage() {
             </button>
             {error && <p style={{ color: "red" }}>{error}</p>}
           </form>
+          <Link href="/auth/signup" className="login-button" style={{ marginTop: "10px", background: "#4b5563", display: "inline-block", textAlign: "center" }}>
+            Đăng ký tài khoản mới
+          </Link>
 
          
         </>
