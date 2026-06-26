@@ -9,7 +9,11 @@ import toast from 'react-hot-toast';
 import { ReactSortable } from 'react-sortablejs';
 import { MdDeleteForever } from "react-icons/md";
 
-export default function Blog({ 
+// Form tạo/sửa Blog trong dashboard admin.
+// Component này nhận dữ liệu cũ qua props khi edit, còn khi add mới thì dùng giá trị rỗng.
+// Các state bên dưới phản ánh đúng field của Blog model: title, slug, images,
+// description, category, tags và status.
+export default function Blog({
     _id,
     title: existingTitle,
     slug: existingslug,
@@ -35,6 +39,8 @@ export default function Blog({
     // upload
     const [isUploading, setIsUploading] = useState(false);
 
+    // Lưu blog: nếu có _id thì gọi PUT để cập nhật, nếu không có _id thì POST để tạo mới.
+    // Sau khi API trả về thành công, redirect được bật để quay lại danh sách.
     async function createBlog(ev) {
         ev.preventDefault();
 
@@ -62,6 +68,7 @@ export default function Blog({
         const uploadedLinks = [];
 
         try {
+            // Upload từng file lên API upload, gom link Cloudinary trả về rồi append vào images.
             for (const file of files) {
                 const data = new FormData();
                 data.append('file', file);

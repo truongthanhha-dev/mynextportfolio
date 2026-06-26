@@ -1,6 +1,8 @@
 // lib/mongooseConnect.js
 import mongoose from "mongoose";
 
+// Hàm kết nối MongoDB dùng chung cho các API route.
+// Nếu connection đã mở thì trả lại connection hiện tại để tránh tạo kết nối mới liên tục.
 export async function mongooseConnect() {
   const uri = process.env.MONGODB_URI;
   if (!uri) throw new Error("Missing MONGODB_URI");

@@ -7,6 +7,9 @@ import useFetchData from "@/hooks/useFetchData";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
+// Trang danh sách Projects trong admin.
+// Dùng chung hook useFetchData để lấy /api/projects, sau đó hỗ trợ search,
+// phân trang và chia project theo trạng thái publish/draft.
 export default function Projects() {
     // pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,6 +32,7 @@ export default function Projects() {
                 blog.title?.toLowerCase().includes(searchQuery.toLowerCase())
             );
 
+    // Giữ tên biến cũ để tránh đổi nhiều JSX phía dưới; dữ liệu ở đây thực chất là projects.
     // calculate index of the first and last blog
     const indexOfFirstBlog = (currentPage - 1) * perPage;
     const indexOfLastBlog = currentPage * perPage;

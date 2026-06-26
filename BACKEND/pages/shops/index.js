@@ -7,6 +7,10 @@ import { SiBloglovin } from "react-icons/si";
 import useFetchData from "@/hooks/useFetchData";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+
+// Trang danh sách Shop trong admin.
+// Quản lý các item sản phẩm/affiliate, gồm tìm kiếm, phân trang,
+// lọc trạng thái publish/draft và link sang màn hình edit/delete.
 export default function shops() {
 
 
@@ -31,6 +35,7 @@ export default function shops() {
                 blog.title?.toLowerCase().includes(searchQuery.toLowerCase())
             );
 
+    // Giữ pattern giống Blogs/Projects để các trang list trong admin nhất quán.
     // calculate index of the first and last blog
     const indexOfFirstBlog = (currentPage - 1) * perPage;
     const indexOfLastBlog = currentPage * perPage;

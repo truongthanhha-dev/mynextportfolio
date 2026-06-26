@@ -1,6 +1,11 @@
 import { Project } from "@/models/Project";
 import { mongooseConnect } from "@/lib/mongoose";
 
+// API quản lý Projects cho dashboard admin.
+// File này gom các thao tác CRUD của project vào cùng một endpoint:
+// POST để tạo project mới, GET để lấy danh sách hoặc lấy theo id,
+// PUT để cập nhật project đang có, DELETE để xóa project theo id.
+// Các comment trong file chỉ dùng để giải thích luồng xử lý, không đổi logic API.
 export default async function handler(req, res) {
  
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -22,6 +27,8 @@ export default async function handler(req, res) {
     if (method === "POST") {
       const data = req.body;
 
+      // Nếu admin chưa nhập slug thủ công thì tạo slug đơn giản từ title
+      // để frontend có đường dẫn ổn định cho từng project.
       if (!data.slug && data.title) {
         data.slug = data.title.trim().toLowerCase().replace(/\s+/g, "-");
       }
@@ -48,6 +55,7 @@ export default async function handler(req, res) {
     if (method === "PUT") {
       const { _id, ...updateData } = req.body;
 
+      // Khi update vẫn giữ quy tắc tự sinh slug nếu title có nhưng slug trống.
       if (!updateData.slug && updateData.title) {
         updateData.slug = updateData.title.trim().toLowerCase().replace(/\s+/g, "-");
       }

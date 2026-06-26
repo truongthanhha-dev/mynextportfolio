@@ -6,6 +6,8 @@ import useFetchData from "@/hooks/useFetchData";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
+// Trang danh sách Gallery/Photos trong admin.
+// Dữ liệu lấy từ /api/photos, sau đó được tìm kiếm và phân trang giống các trang quản trị khác.
 export default function Gallery() {
   // pagination
   const [currentPage, setCurrentPage] = useState(1);

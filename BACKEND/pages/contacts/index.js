@@ -7,6 +7,8 @@ import { FaEdit } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
+// Trang danh sách Contact trong admin.
+// Dùng để xem các yêu cầu liên hệ gửi từ frontend, hỗ trợ search và chuyển sang trang xem chi tiết.
 export default function contacts() {
 
     // pagination

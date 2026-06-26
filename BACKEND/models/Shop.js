@@ -1,6 +1,8 @@
 
 import mongoose, { Schema, models, model } from "mongoose";
 
+// Schema lưu sản phẩm hoặc affiliate item trong phần Shop.
+// afilink giữ link affiliate, price giữ giá dạng chuỗi để admin nhập linh hoạt theo giao diện.
 const ProductSchema = new Schema(
   {
     title: { type: String },

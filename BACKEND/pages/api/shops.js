@@ -1,6 +1,9 @@
 import { Shop } from "@/models/Shop";
 import { mongooseConnect } from "@/lib/mongoose";
 
+// API quản lý Shop/Product cho dashboard admin.
+// File này lưu các sản phẩm/affiliate item, bao gồm hình ảnh, mô tả,
+// giá, link affiliate và trạng thái publish/draft.
 export default async function handler(req, res) {
   const { method } = req;
   const { id } = req.query;
@@ -12,6 +15,7 @@ export default async function handler(req, res) {
       const data = req.body;
 
 
+      // Slug giúp sản phẩm có định danh thân thiện với URL và dễ truy vấn.
       if (!data.slug && data.title) {
         data.slug = data.title.trim().toLowerCase().replace(/\s+/g, "-");
       }

@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 
+// Hook dùng chung để lấy danh sách dữ liệu cho các trang admin.
+// Các page như blogs/projects/shops truyền endpoint vào, hook trả về allData và loading.
+// Comment này chỉ giải thích flow fetch, không đổi cách hook gọi API.
 function useFetchData(apiEndpoint) {
   const [allData, setAllData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,6 +12,7 @@ function useFetchData(apiEndpoint) {
 
     const fetchAllData = async () => {
       try {
+        // Fetch dữ liệu dạng JSON từ API nội bộ của Next.js.
         const res = await fetch(apiEndpoint);
         console.log("🛰️ Response status:", res.status);
         const data = await res.json(); // ✅ ĐỌC JSON ĐÚNG CÁCH

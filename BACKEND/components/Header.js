@@ -5,10 +5,13 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import LoginLayout from "./LoginLayout";
 
+// Header của dashboard admin.
+// Chứa nút mở sidebar trên mobile/desktop nhỏ và nút chuyển fullscreen cho màn hình quản trị.
 export default function Header({ handleAsideOpen }) {
 
     const [isFullscreen, setIsFullscreen] = useState(false);
 
+    // Fullscreen API chỉ tác động đến trình duyệt, không ảnh hưởng dữ liệu backend.
     const toggleFullScreen = () => {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen().then(() => {

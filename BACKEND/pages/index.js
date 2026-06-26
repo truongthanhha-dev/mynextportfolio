@@ -15,6 +15,9 @@ import LoginLayout from "@/components/LoginLayout";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
+// Dashboard tổng quan của backend admin.
+// Trang này fetch dữ liệu từ nhiều API nội bộ để hiển thị số liệu blog, project,
+// shop và gallery, sau đó dùng Chart.js để vẽ thống kê theo tháng.
 export default function Home() {
   const [blogsData, setBlogsData] = useState([]);
   const [projectData, setProjectData] = useState([]);
@@ -34,6 +37,8 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Promise.allSettled giúp dashboard vẫn render được một phần dữ liệu
+        // ngay cả khi một endpoint riêng lẻ bị lỗi.
         const [resBlogs, resProjects, resShops, resPhotos] = await Promise.allSettled([
           fetch("/api/blogs"),
           fetch("/api/projects"),

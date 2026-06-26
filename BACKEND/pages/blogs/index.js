@@ -6,6 +6,9 @@ import useFetchData from "@/hooks/useFetchData";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
+// Trang danh sách Blog trong admin.
+// Chịu trách nhiệm fetch dữ liệu blog, tìm kiếm theo title,
+// phân trang và tách trạng thái publish/draft để admin quản lý nhanh.
 export default function Blogs() {
     // pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -28,6 +31,7 @@ export default function Blogs() {
                 blog.title?.toLowerCase().includes(searchQuery.toLowerCase())
             );
 
+    // Pagination chỉ xử lý trên dữ liệu đã filter để kết quả tìm kiếm không bị lệch trang.
     // calculate index of the first and last blog
     const indexOfFirstBlog = (currentPage - 1) * perPage;
     const indexOfLastBlog = currentPage * perPage;

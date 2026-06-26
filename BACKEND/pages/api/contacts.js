@@ -1,6 +1,9 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Contact } from "@/models/contact";
 
+// API quản lý Contact từ form liên hệ ngoài frontend.
+// Admin có thể xem danh sách liên hệ, xem chi tiết theo id,
+// cập nhật thông tin hoặc xóa bản ghi khi đã xử lý xong.
 export default async function handler(req, res) {
   const { method } = req;
   const { id } = req.query;
@@ -9,6 +12,7 @@ export default async function handler(req, res) {
     await mongooseConnect();
 
     if (method === "POST") {
+      // Lưu nguyên payload từ form liên hệ theo schema Contact.
       const blog = await Contact.create(req.body);
       res.status(201).json(blog);
       return;

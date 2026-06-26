@@ -10,6 +10,9 @@ import { ReactSortable } from 'react-sortablejs';
 import { MdDeleteForever } from "react-icons/md";
 import Head from "next/head";
 
+// Form tạo/sửa Shop item trong dashboard admin.
+// Shop ở đây dùng cho sản phẩm hoặc affiliate item, gồm title, slug,
+// ảnh, mô tả markdown, affiliate link, price và trạng thái hiển thị.
 export default function Shop({
   _id,
   title: existingTitle,
@@ -37,6 +40,8 @@ export default function Shop({
 
   const [isUploading, setIsUploading] = useState(false);
 
+  // Tên hàm vẫn là saveProject theo code cũ, nhưng nghiệp vụ hiện tại là lưu Shop item.
+  // Giữ nguyên tên để tránh ảnh hưởng những chỗ đang gọi hàm trong component.
   async function saveProject(ev) {
     ev.preventDefault();
 

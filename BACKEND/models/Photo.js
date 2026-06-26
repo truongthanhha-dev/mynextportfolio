@@ -1,6 +1,8 @@
 
 import mongoose, { Schema, models, model } from "mongoose";
 
+// Schema lưu item gallery/photo.
+// Mỗi bản ghi có title, slug và danh sách URL ảnh đã upload lên Cloudinary.
 const PhotosSchema = new Schema(
   {
     title: { type: String },

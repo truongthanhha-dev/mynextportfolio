@@ -9,6 +9,10 @@ import toast from 'react-hot-toast';
 import { ReactSortable } from 'react-sortablejs';
 import { MdDeleteForever } from "react-icons/md";
 
+// Form tạo/sửa Project trong dashboard admin.
+// Props existing* dùng lại cùng một component cho cả màn hình add và edit.
+// Component này quản lý metadata của dự án: ảnh, mô tả markdown, client,
+// category, tags, live preview và trạng thái publish/draft.
 export default function Project({
   _id,
   title: existingTitle,
@@ -38,6 +42,8 @@ export default function Project({
   // upload
   const [isUploading, setIsUploading] = useState(false);
 
+  // Lưu project vào API. Trước khi gửi sẽ lọc category/tag rỗng
+  // để dữ liệu trong MongoDB sạch hơn nhưng không làm đổi cấu trúc form.
   async function saveProject(ev) {
     ev.preventDefault();
 
@@ -82,6 +88,7 @@ export default function Project({
     const uploadedLinks = [];
 
     try {
+      // API upload trả về links, component chỉ lưu URL để Project model tham chiếu ảnh.
       for (const file of files) {
         const data = new FormData();
         data.append('file', file);

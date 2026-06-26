@@ -2,6 +2,9 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Photos } from "@/models/Photo";
 
+// API quản lý Gallery/Photos cho admin.
+// Cấu trúc giống project/shop: hỗ trợ tạo, đọc, cập nhật và xóa ảnh theo id.
+// Slug được sinh từ title khi cần để mỗi ảnh/gallery item có định danh dễ dùng.
 export default async function handler(req, res) {
   const { method } = req;
   const { id } = req.query;
@@ -12,6 +15,7 @@ export default async function handler(req, res) {
     if (method === "POST") {
       const data = req.body;
 
+      // Tự tạo slug khi title có dữ liệu nhưng form không gửi slug.
       if (!data.slug && data.title) {
         data.slug = data.title.trim().toLowerCase().replace(/\s+/g, "-");
       }

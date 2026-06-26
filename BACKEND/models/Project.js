@@ -1,6 +1,8 @@
 
 import mongoose, { Schema, models, model } from "mongoose";
 
+// Schema lưu thông tin dự án hiển thị ngoài portfolio.
+// slug là field bắt buộc để định danh project, còn images/category/tags hỗ trợ lọc và trình bày.
 const projectSchema = new Schema(
   {
     title: { type: String },

@@ -9,6 +9,8 @@ import toast from 'react-hot-toast';
 import { ReactSortable } from 'react-sortablejs';
 import { MdDeleteForever } from "react-icons/md";
 
+// Form tạo/sửa item Gallery/Photo trong dashboard admin.
+// Component này chỉ quản lý dữ liệu tối thiểu của ảnh: title, slug và danh sách image URL.
 export default function Photo({
   _id,
   title: existingTitle,
@@ -28,6 +30,8 @@ export default function Photo({
   // upload
   const [isUploading, setIsUploading] = useState(false);
 
+  // Lưu photo: có _id thì update bản ghi hiện có, không có _id thì tạo bản ghi mới.
+  // Logic này giữ cùng pattern với Project/Blog/Shop để các form admin dễ bảo trì.
   async function saveProject(ev) {
     ev.preventDefault();
 

@@ -13,7 +13,9 @@ import { useEffect } from "react";
 import LoginLayout from "./LoginLayout";
 import { useSession, signOut } from "next-auth/react"
 
-
+// Sidebar điều hướng của khu vực admin.
+// Component này chịu trách nhiệm hiển thị menu quản trị khi user đã đăng nhập,
+// đồng thời giữ activeLink theo router.pathname để biết trang nào đang được chọn.
 export default function Aside({ asideOpen, handleAsideOpen }) {
         const router = useRouter();
         const [click, setClick] = useState(false);
@@ -30,6 +32,7 @@ export default function Aside({ asideOpen, handleAsideOpen }) {
                 setActiveLink(router.pathname);
         }, [router.pathname])
 
+        // Session được lấy từ NextAuth; nếu chưa đăng nhập thì sidebar không render nội dung admin.
         const { data: session } = useSession();
         if (session) {
                 return <>

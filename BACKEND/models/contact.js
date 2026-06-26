@@ -1,6 +1,8 @@
 
 import mongoose, { Schema, models, model } from "mongoose";
 
+// Schema lưu thông tin người dùng gửi từ form contact ngoài frontend.
+// project là mảng vì một khách có thể chọn nhiều loại dịch vụ/dự án cần trao đổi.
 const ContactSchema = new Schema(
   {
     name:  { type: String, required: true },
