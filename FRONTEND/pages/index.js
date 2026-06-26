@@ -174,7 +174,7 @@ export default function Home() {
 
             {/* rightside image section */}
             <div className="heroimageright">
-              <div className="hero_img_box" data-aos='flip-left' data-aos-easing='ease-out-cubic' data-aos-duration='2000' >
+              <div className="hero_img_box hero_main_img_box" data-aos='flip-left' data-aos-easing='ease-out-cubic' data-aos-duration='2000' >
                 <img src="/img/me.png" alt="" />
               </div>
             </div>
@@ -309,19 +309,19 @@ export default function Home() {
               <div className="exper_card">
                 <span>2022 - 2024</span>
                 <h3>Thành viên CLB Công Nghệ / IT Club</h3>
-                <p>Tham gia các buổi workshop, coding challenge và hỗ trợ các sự kiện học thuật liên quan đến lập trình và công nghệ.</p>
+                <p>Tham gia các buổi workshop và hỗ trợ các sự kiện học thuật liên quan đến lập trình và công nghệ.</p>
               </div>
 
               <div className="exper_card">
-                <span>2023 - 2024</span>
-                <h3>Web Development Tutor</h3>
-                <p>Hỗ trợ bạn bè và sinh viên khóa dưới trong các môn học lập trình web, bao gồm HTML, CSS, JavaScript và React.</p>
+                <span>2023 - 2026</span>
+                <h3>Tự học và phát triển kỹ năng Frontend</h3>
+                <p>Chủ động học và thực hành các công nghệ phát triển web như HTML, CSS, JavaScript, React.js và TypeScript thông qua các khóa học trực tuyến, tài liệu kỹ thuật và các bài tập thực hành.</p>
               </div>
 
               <div className="exper_card">
-                <span>2024 - 2025</span>
-                <h3>Personal Project Developer</h3>
-                <p>Tự xây dựng và triển khai các dự án web thực tế sử dụng React, Next.js và MongoDB nhằm rèn luyện kỹ năng lập trình và quản lý sản phẩm.</p>
+                <span>2025 - 2026</span>
+                <h3>Lập trình viên dự án cá nhân (Personal Project Developer)</h3>
+                <p>Tự xây dựng và triển khai các dự án web thực tế sử dụng React.js, Next.js, TypeScript và MongoDB nhằm nâng cao kỹ năng lập trình, phát triển giao diện người dùng và quản lý dự án cá nhân.</p>
               </div>
 
             </div>
@@ -341,12 +341,12 @@ export default function Home() {
                 <p>Đại học Ngoại ngữ - Tin học TP.HCM </p>
               </div>
               <div className="exper_card">
-                <span>2022 - 2025</span>
+                <span>2022 - 2026</span>
                 <h3>Thành tích học tập</h3>
                 <p>Luôn duy trì kết quả học tập ổn định, hoàn thành tốt các môn lập trình và công nghệ phần mềm.</p>
               </div>
               <div className="exper_card">
-                <span>2023-2025</span>
+                <span>2023-2026</span>
                 <h3>Front-end Certificate</h3>
                 <p>Hoàn thành khóa học Front-end (HTML, CSS, JavaScript, React) tại nền tảng học trực tuyến.</p>
               </div>

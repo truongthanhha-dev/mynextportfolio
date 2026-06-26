@@ -656,7 +656,15 @@ header.sticky {
 }
 
 .heroinfoleft {
-    width: 50%;
+    width: auto;
+    flex: 0 1 520px;
+}
+
+.hero .w-100 {
+    max-width: 1120px;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 70px;
 }
 
 .hero_sb_title {
@@ -780,12 +788,21 @@ header.sticky {
 
 .heroimageright {
     position: relative;
-    width: 50%;
+    width: auto;
+    flex: 0 0 450px;
+    display: flex;
+    justify-content: center;
     text-align: center;
 }
 
 .hero_img_box {
     position: relative;
+}
+
+.hero_main_img_box {
+    width: 450px;
+    height: 475px;
+    margin-left: 0;
 }
 
 .heroimgbox {
@@ -812,6 +829,13 @@ header.sticky {
     position: relative;
     border: 2px solid var(--dark-site-secondary);
     transition: 0.3s;
+}
+
+.hero_main_img_box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .hero_img_box img:hover {
@@ -4604,7 +4628,7 @@ header.sticky {
     }
 
     .heroimageright {
-        padding-left: 75px;
+        padding-left: 0;
     }
 
     .hero_img_box {
